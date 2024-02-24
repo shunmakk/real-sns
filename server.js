@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGOURL).then(() => {
 app.use(express.json());
 app.use("/api/users" , userRoute);
 app.use("/api/auth" , authRoute);
-app.use("/api/post" , postsRoute);
+app.use("/api/posts" , postsRoute);
 
 
 //ブラウザを立ち上げる
