@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
         min: 3,
         max: 25,
-        unique: false,
+        unique: true
     },
     email: {
         type: String,
@@ -52,3 +52,6 @@ const UserSchema = new mongoose.Schema({
 },
 {timestamps: true}  //データを格納した日付
 );
+
+
+module.exports = mongoose.model("User", UserSchema);

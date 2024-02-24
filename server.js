@@ -25,13 +25,15 @@ mongoose.connect(process.env.MONGOURL).then(() => {
 
 
 //ミドルウェアの設定
+app.use(express.json());
 app.use("/api/users" , userRoute);
 app.use("/api/auth" , authRoute);
 app.use("/api/post" , postsRoute);
 
+
 //ブラウザを立ち上げる
 app.get("/" , (req, res) => {
-    res.send('Hello');
+    res.send('Hello Express');
 })
 // app.get("/users" , (req, res) => {
 //     res.send('Users');
