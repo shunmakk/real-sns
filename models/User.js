@@ -48,6 +48,9 @@ const UserSchema = new mongoose.Schema({
     city: {
         type: String,
         max: 50,
+    },
+    likepeople:{
+        type: String
     }
 },
 {timestamps: true}  //データを格納した日付
