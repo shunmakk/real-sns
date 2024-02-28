@@ -8,7 +8,7 @@ const app = express();
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postsRoute = require("./routes/posts")
-const  PORT = 3000;
+const  PORT = 4000;
 
 
 
