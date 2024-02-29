@@ -98,6 +98,21 @@ router.delete("/:id" , async (req,res) => {
  })
 
 
+
+ //プロフィール専用のタイムライン取得
+ router.get("/profile/:username", async (req, res) => {
+    try {
+      const user = await User.findOne({ username: req.params.username });
+      const posts = await Post.find({ userId: user._id });
+      return res.status(200).json(posts);
+    } catch (err) {
+      return res.json(500).json(err);
+    }
+  });
+
+
+
+
  //タイムラインを取得するAPI
 router.get("/timeline/:userId", async (req, res) => {
     try {
@@ -114,6 +129,7 @@ router.get("/timeline/:userId", async (req, res) => {
     }
   });
   
+
 
 
 
