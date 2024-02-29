@@ -99,24 +99,21 @@ router.delete("/:id" , async (req,res) => {
 
 
  //タイムラインを取得するAPI
- router.get("/timeline/all" , async(req,res) => {
-     try{
-       const currentUser = await User.findById(req.body.userId);
-       //自分
-       const  userPosts  =  await Post.find({userId: currentUser._id});
-       //自分がフォローしているユーざーの情報を取得する
-       const friendsPost = await Promise.all( 
-           currentUser.followings.map((friendId) => {
-               return this.post.find({userId: friendId});
-           })
-           )
-
-        return res.status(200).json(userPosts.concat(...friendsPost));
-     }
-     catch(err){
-         return res.status(500).json(err);
-     }
- })
+router.get("/timeline/:userId", async (req, res) => {
+    try {
+      const currentUser = await User.findById(req.params.userId);
+      const userPosts = await Post.find({ userId: currentUser._id });
+      const friendPosts = await Promise.all(
+        currentUser.followings.map((friendId) => {
+          return Post.find({ userId: friendId });
+        })
+      );
+      res.status(200).json(userPosts.concat(...friendPosts));
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
 
 
 

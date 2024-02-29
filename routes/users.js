@@ -51,7 +51,7 @@ router.get("/:id" ,async(req, res)=> {
         //パスワードとupdateatを第三者に見られないようにする
         const {password, updatedAt, ...others} = user._doc;
 
-        res.status(200).json(others);
+        return res.status(200).json(others);
       }
       catch(err){
         return res.status(500).json(err);
