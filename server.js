@@ -8,6 +8,7 @@ const app = express();
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postsRoute = require("./routes/posts")
+const uploadRoute = require("./routes/upload")
 const  PORT = 4000;
 
 
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use("/api/users" , userRoute);
 app.use("/api/auth" , authRoute);
 app.use("/api/posts" , postsRoute);
+app.use("/api/upload" , uploadRoute);
 
 
 //ブラウザを立ち上げる
