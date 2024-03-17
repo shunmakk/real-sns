@@ -7,10 +7,11 @@ const app = express();
 //routesディレクトリから呼び出す
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
-const postsRoute = require("./routes/posts")
-const uploadRoute = require("./routes/upload")
+const postsRoute = require("./routes/posts");
+const uploadRoute = require("./routes/upload");
 const  PORT = 4000;
 
+const path = require("path");
 
 
 //mongoDBと接続
@@ -26,6 +27,7 @@ mongoose.connect(process.env.MONGOURL).then(() => {
 
 
 //ミドルウェアの設定
+app.use("/images", express.static(path.join(__dirname, "public/images")))
 app.use(express.json());
 app.use("/api/users" , userRoute);
 app.use("/api/auth" , authRoute);
